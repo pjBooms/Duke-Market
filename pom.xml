@@ -9,6 +9,10 @@
 
   <name>Duke Market Java Applications Store</name>
 
+  <properties>
+    <java.version>1.8</java.version>
+  </properties>
+
   <modules>
     <module>client</module>
     <module>server</module>
