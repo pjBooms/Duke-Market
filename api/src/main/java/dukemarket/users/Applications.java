@@ -12,8 +12,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/apps")
 public interface Applications {
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    ApplicationModel register(ApplicationModel application);
+//    @RequestMapping(value = "/", method = RequestMethod.POST)
+//    ApplicationModel register(ApplicationModel application);
 
     @RequestMapping(value = "/my/{id}", method = RequestMethod.PUT)
     void update(@PathVariable String id, @RequestBody ApplicationModel application);
@@ -22,7 +22,7 @@ public interface Applications {
     List<ApplicationModel> list();
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    ApplicationModel get();
+    ApplicationModel get(@PathVariable String id);
 
     @RequestMapping(value = "/my", method = RequestMethod.GET)
     List<ApplicationModel> listMy();
