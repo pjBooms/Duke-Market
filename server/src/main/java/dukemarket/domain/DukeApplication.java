@@ -99,10 +99,6 @@ public class DukeApplication {
         return root;
     }
 
-    public void setRoot(String root) {
-        this.root = root;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
