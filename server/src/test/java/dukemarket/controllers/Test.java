@@ -1,5 +1,6 @@
 package dukemarket.controllers;
 
+import dukemarket.models.ApplicationModel;
 import dukemarket.models.CustomerModel;
 import dukemarket.users.Applications;
 import dukemarket.users.Users;
@@ -7,6 +8,7 @@ import org.restler.Restler;
 import org.restler.spring.mvc.SpringMvcSupport;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -31,7 +33,7 @@ public class Test {
 
         CustomerModel model = users.register(buildFakeCustomer());
 
-//        applications.get()
+        List<ApplicationModel> models = applications.list();
 
     }
 

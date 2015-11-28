@@ -1,6 +1,7 @@
 package dukemarket.storage;
 
 import dukemarket.domain.DukeApplication;
+import org.springframework.stereotype.Component;
 import org.springframework.util.FileCopyUtils;
 
 import java.io.*;
@@ -9,7 +10,12 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
+@Component
 public class BundleParser {
+
+    public DukeApplication parseBundle(String path) throws IOException {
+        return parseBundle(new File(path));
+    }
 
     public DukeApplication parseBundle(File bundleDir) throws IOException {
        DukeApplication app = new DukeApplication();

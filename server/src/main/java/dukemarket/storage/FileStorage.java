@@ -2,9 +2,7 @@ package dukemarket.storage;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.util.FileCopyUtils;
 
-import javax.swing.text.html.HTMLDocument;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,8 +19,8 @@ public class FileStorage {
     @Value("${bundles.dir}")
     private String root;
 
-    public void register(String userId, String appName, InputStream stream) throws IOException {
-        File bundleDir = new File(root, userId + File.separator + appName);
+    public String register(String userId, String appName, InputStream stream) throws IOException {
+        File bundleDir = getBundleFile(userId, appName);
         if (!bundleDir.mkdirs()) {
             throw new RuntimeException("Could not create bundle dir at " + bundleDir.getAbsolutePath());
         }
@@ -47,5 +45,10 @@ public class FileStorage {
             }
             zis.closeEntry();
         }
+        return bundleDir.getAbsolutePath();
+    }
+
+    public File getBundleFile(String userId, String appName) {
+        return new File(root, userId + File.separator + appName);
     }
 }

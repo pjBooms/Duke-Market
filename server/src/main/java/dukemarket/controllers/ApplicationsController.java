@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * This file created by Maxim S. Ivanov
@@ -41,17 +42,17 @@ public class ApplicationsController implements Applications {
     @Override
     public List<ApplicationModel> list() {
         List<DukeApplication> applications = applicationRepository.findAll();
-        applications.stream().map(toModel());
-        ArrayList<ApplicationModel> result = new ArrayList<>();
-
-        for (int i = 0; i < 20; i++) {
-            ApplicationModel model = buildFakeAppModel(i);
-            result.add(model);
-        }
-        return result;
+        return applications.stream().map(toModel()).collect(Collectors.toList());
+//        ArrayList<ApplicationModel> result = new ArrayList<>();
+//
+//        for (int i = 0; i < 20; i++) {
+//            ApplicationModel model = buildFakeAppModel(i);
+//            result.add(model);
+//        }
+//        return result;
     }
 
-    private Function<? super DukeApplication, ?> toModel() {
+    private Function<? super DukeApplication, ApplicationModel> toModel() {
         return dukeApplication -> {
             ApplicationModel model = new ApplicationModel();
             model.setKey(dukeApplication.getKey());
