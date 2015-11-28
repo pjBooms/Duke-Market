@@ -1,7 +1,8 @@
-package dukemarket.users;
+package dukemarket.controllers;
 
 import dukemarket.models.ApplicationModel;
 import dukemarket.models.CustomerModel;
+import dukemarket.users.Applications;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 

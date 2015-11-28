@@ -1,4 +1,4 @@
-package dukemarket.users;
+package dukemarket.controllers;
 
 import dukemarket.storage.FileStorage;
 import org.springframework.beans.factory.annotation.Autowired;
