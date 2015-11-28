@@ -1,20 +1,21 @@
 package dukemarket.controllers;
 
+import dukemarket.converters.ApplicationConverter;
+import dukemarket.domain.Customer;
 import dukemarket.domain.DukeApplication;
 import dukemarket.models.ApplicationModel;
 import dukemarket.models.CustomerModel;
 import dukemarket.repositories.ApplicationRepository;
+import dukemarket.repositories.CustomerRepository;
 import dukemarket.users.Applications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -25,6 +26,9 @@ public class ApplicationsController implements Applications {
 
     @Autowired
     private ApplicationRepository applicationRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
 //    @Override
 //    public ApplicationModel register(ApplicationModel applicationModel) {
@@ -41,42 +45,16 @@ public class ApplicationsController implements Applications {
 
     @Override
     public List<ApplicationModel> list() {
+
+        for (int i = 0; i < 5; i++) {
+            applicationRepository.save(buildFakeApp(i));
+        }
+
         List<DukeApplication> applications = applicationRepository.findAll();
-        return applications.stream().map(toModel()).collect(Collectors.toList());
+        return applications.stream().map(ApplicationConverter.toModel()).collect(Collectors.toList());
 //        ArrayList<ApplicationModel> result = new ArrayList<>();
 //
-//        for (int i = 0; i < 20; i++) {
-//            ApplicationModel model = buildFakeAppModel(i);
-//            result.add(model);
-//        }
 //        return result;
-    }
-
-    private Function<? super DukeApplication, ApplicationModel> toModel() {
-        return dukeApplication -> {
-            ApplicationModel model = new ApplicationModel();
-            model.setKey(dukeApplication.getKey());
-            model.setDateCreated(dukeApplication.getDateCreated());
-            model.setName(dukeApplication.getName());
-            model.setDescription(dukeApplication.getDescription());
-
-            model.setIconUrl(buildIconUrl(dukeApplication));
-            model.setScreenshotsUrls(buildScreenshotsUrl(dukeApplication));
-            model.setDescription(dukeApplication.getDescription());
-            return model;
-        };
-    }
-
-    private static List<String> buildScreenshotsUrl(DukeApplication application) {
-        ArrayList<String> result = new ArrayList<>();
-        for (String image : application.getImages()) {
-            result.add("http://localhost:8080/" + application.getCustomer().getKey() + "/" + application.getKey() + "/screenshot/" + image);
-        }
-        return result;
-    }
-
-    private static String buildIconUrl(DukeApplication application) {
-        return "http://localhost:8080/" + application.getCustomer().getKey() + "/" + application.getKey() + "/icon/icon.png";
     }
 
     private ApplicationModel buildFakeAppModel(int i) {
@@ -87,13 +65,41 @@ public class ApplicationsController implements Applications {
         model.setIconUrl("");
         model.setDescription("tram param " + i);
         model.setName("application name " + i);
-        CustomerModel customer = buildFakeCustomer();
+        CustomerModel customer = buildFakeCustomerModel();
         model.setCustomer(customer);
         return model;
     }
 
-    private CustomerModel buildFakeCustomer() {
+    private DukeApplication buildFakeApp(int i) {
+        DukeApplication model = new DukeApplication();
+
+        model.setKey("app" + i);
+        model.setDateCreated(new Date());
+//        model.setIconUrl("");
+        model.setDescription("tram param " + i);
+        model.setName("application name " + i);
+        model.getScreenshotImages().add("screenshot.jpg");
+
+        Customer customer = buildFakeCustomer();
+        customerRepository.save(customer);
+        model.setCustomer(customer);
+
+        return model;
+    }
+
+    private CustomerModel buildFakeCustomerModel() {
         CustomerModel customerModel = new CustomerModel();
+        customerModel.setKey(UUID.randomUUID().toString());
+        customerModel.setDateCreated(new Date());
+        customerModel.setEmail("test@customer.com");
+        customerModel.setFirstName("First Name");
+        customerModel.setLastName("Last Name");
+        customerModel.setPhone("+1 111 111 11 11");
+        return customerModel;
+    }
+
+    private Customer buildFakeCustomer() {
+        Customer customerModel = new Customer();
         customerModel.setKey(UUID.randomUUID().toString());
         customerModel.setDateCreated(new Date());
         customerModel.setEmail("test@customer.com");

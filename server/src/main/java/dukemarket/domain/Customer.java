@@ -37,8 +37,8 @@ public class Customer {
     @Column(name = "password")
     private String password; // md5
 
-    @OneToMany
-    private List<DukeApplication> applications = new ArrayList<>();
+//    @OneToMany
+//    private List<DukeApplication> applications = new ArrayList<>();
 
     public enum Role {
         OWNER,
@@ -123,11 +123,11 @@ public class Customer {
         this.password = password;
     }
 
-    public List<DukeApplication> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(ArrayList<DukeApplication> applications) {
-        this.applications = applications;
-    }
+//    public List<DukeApplication> getApplications() {
+//        return applications;
+//    }
+//
+//    public void setApplications(ArrayList<DukeApplication> applications) {
+//        this.applications = applications;
+//    }
 }

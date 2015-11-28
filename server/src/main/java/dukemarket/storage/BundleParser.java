@@ -21,7 +21,7 @@ public class BundleParser {
        DukeApplication app = new DukeApplication();
         app.setDescription(parseDescription(bundleDir));
         app.setName(parseName(bundleDir));
-        app.setImages(parseImages(bundleDir));
+        app.setScreenshotImages(parseImages(bundleDir));
         return app;
     }
 

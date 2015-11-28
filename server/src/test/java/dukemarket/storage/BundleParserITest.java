@@ -15,7 +15,7 @@ public class BundleParserITest {
         BundleParser bundleParser = new BundleParser();
         DukeApplication dukeApplication = bundleParser.parseBundle(bundleDir);
         assertTrue("Description should be readed", dukeApplication.getDescription().length() > 0);
-        assertEquals("Screenshots should be parsed", 1, dukeApplication.getImages().size());
+        assertEquals("Screenshots should be parsed", 1, dukeApplication.getScreenshotImages().size());
         assertEquals("Name should be readed", "Brick Breaker", dukeApplication.getName());
     }
 }

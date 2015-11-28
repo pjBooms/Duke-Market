@@ -25,7 +25,7 @@ public class DukeApplication {
     private String description;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> images = new ArrayList<>();
+    private List<String> screenshotImages = new ArrayList<>();
 
     @Column(name = "date_created")
     private Date dateCreated;
@@ -71,12 +71,12 @@ public class DukeApplication {
         this.description = description;
     }
 
-    public List<String> getImages() {
-        return images;
+    public List<String> getScreenshotImages() {
+        return screenshotImages;
     }
 
-    public void setImages(List<String> images) {
-        this.images = images;
+    public void setScreenshotImages(List<String> screenshotImages) {
+        this.screenshotImages = screenshotImages;
     }
 
     public Date getDateCreated() {
