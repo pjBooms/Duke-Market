@@ -1,10 +1,16 @@
 package dukemarket.users;
 
-import org.springframework.web.bind.annotation.RestController;
+import dukemarket.models.CustomerModel;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/users")
+@RestController
+@RequestMapping("/users")
 public interface Users {
 
-    UserDto register(UserDto user);
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    CustomerModel register(CustomerModel customer);
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    void update(@PathVariable String id, @RequestBody CustomerModel customer);
 
 }
