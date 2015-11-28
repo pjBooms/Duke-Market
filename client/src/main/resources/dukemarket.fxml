@@ -12,10 +12,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8"
+<ScrollPane hbarPolicy="NEVER" prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="dukemarket.MainController">
     <content>
-        <VBox prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox prefHeight="600.0" prefWidth="1050.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <AnchorPane style="-fx-background-color: #524456;">
                     <children>

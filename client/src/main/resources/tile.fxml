@@ -7,10 +7,10 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="tile" prefHeight="130.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dukemarket.TileController">
+<Pane fx:id="tile" prefHeight="130.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dukemarket.TileController">
    <children>
       <ImageView fx:id="image" fitHeight="100.0" fitWidth="100.0" layoutX="15.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
-      <Hyperlink fx:id="appLink" layoutX="142.0" layoutY="15.0" prefHeight="24.0" prefWidth="87.0" text="Hyperlink" textAlignment="CENTER" />
+      <Hyperlink fx:id="appLink" layoutX="142.0" layoutY="15.0" prefHeight="24.0" prefWidth="140.0" text="Hyperlink" textAlignment="CENTER" />
       <Button fx:id="startButton" layoutX="142.0" layoutY="65.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" text="Start" />
    </children>
 </Pane>
