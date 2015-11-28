@@ -3,6 +3,7 @@ package dukemarket.controllers;
 import dukemarket.models.ApplicationModel;
 import dukemarket.models.CustomerModel;
 import dukemarket.users.Applications;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -14,7 +15,7 @@ import java.util.UUID;
 /**
  * This file created by Maxim S. Ivanov
  */
-
+@Component
 public class ApplicationsController implements Applications {
     @Override
     public ApplicationModel register(ApplicationModel customer) {
