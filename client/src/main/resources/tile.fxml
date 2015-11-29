@@ -11,6 +11,6 @@
    <children>
       <ImageView fx:id="image" fitHeight="100.0" fitWidth="100.0" layoutX="15.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
       <Hyperlink fx:id="appLink" layoutX="142.0" layoutY="15.0" onAction="#showApp" prefHeight="24.0" prefWidth="140.0" text="Hyperlink" textAlignment="CENTER" />
-      <Button fx:id="startButton" layoutX="142.0" layoutY="65.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" text="Start" />
+      <Button fx:id="startButton" layoutX="142.0" layoutY="65.0" onAction="#start" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" text="Start" />
    </children>
 </Pane>

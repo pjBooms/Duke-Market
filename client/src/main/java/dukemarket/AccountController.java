@@ -11,6 +11,7 @@ import javafx.scene.layout.TilePane;
 import webfx.WebFXController;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -36,16 +37,18 @@ public class AccountController extends WebFXController {
         Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
         tiles.getChildren().clear();
 
-        Applications appsRest = RestProvider.getApplicationsRest();
+        //Applications appsRest = RestProvider.getApplicationsRest();
 
-        List<ApplicationModel> apps = appsRest.list();
+        List<ApplicationModel> apps = RestProvider.getApplicationsRest();
+//                appsRest.list();
 
         for (ApplicationModel app : apps) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tile.fxml"));
             Node tile = fxmlLoader.load();
             TileController controller = fxmlLoader.getController();
             controller.setContexts(app, navigationContext);
-            controller.fillTile(ICON_48, app.getName());
+            Image icon = new Image(new URL(app.getIconUrl()).openStream());
+            controller.fillTile(icon, app.getName());
 
             tiles.getChildren().add(tile);
         }

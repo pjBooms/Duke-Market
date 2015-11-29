@@ -17,6 +17,7 @@ import javafx.stage.FileChooser;
 import webfx.WebFXController;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -41,9 +42,11 @@ public class MainController extends WebFXController {
 
     public void fillContent() throws IOException {
 
-        Applications appsRest = RestProvider.getApplicationsRest();
+        //Applications appsRest = RestProvider.getApplicationsRest();
 
-        List<ApplicationModel> apps = appsRest.list();
+        List<ApplicationModel> apps = RestProvider.getApplicationsRest();
+//                appsRest.list();
+
 
         for (ApplicationModel app: apps) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tile.fxml"));
@@ -51,7 +54,8 @@ public class MainController extends WebFXController {
             TileController controller = fxmlLoader.getController();
             controller.setContexts(app, navigationContext);
             System.out.println(app.getName());
-            controller.fillTile(ICON_48, app.getName());
+            Image icon = new Image(new URL(app.getIconUrl()).openStream());
+            controller.fillTile(icon, app.getName());
 
             tiles.getChildren().add(tile);
         }
@@ -62,8 +66,13 @@ public class MainController extends WebFXController {
     @Override
     public void onShow() {
         try {
-            register.setVisible(false);
-            login.setVisible(false);
+            if (context == null) {
+                account.setVisible(false);
+                logout.setVisible(false);
+            } else {
+                register.setVisible(false);
+                login.setVisible(false);
+            }
             fillContent();
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,5 +81,9 @@ public class MainController extends WebFXController {
 
     public void account() {
         navigationContext.goTo("account.fxml");
+    }
+
+    public void register() {
+        navigationContext.goTo("register.fxml");
     }
 }
