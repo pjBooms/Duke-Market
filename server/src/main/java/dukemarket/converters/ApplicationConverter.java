@@ -3,8 +3,11 @@ package dukemarket.converters;
 import dukemarket.domain.DukeApplication;
 import dukemarket.models.ApplicationModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -14,6 +17,10 @@ import java.util.function.Function;
  */
 @Component
 public class ApplicationConverter {
+
+    @Value("${server.port}")
+    private String appPort;
+
     @Autowired
     private CustomerConverter customerConverter;
 
@@ -29,9 +36,19 @@ public class ApplicationConverter {
             model.setScreenshotsUrls(buildScreenshotsUrl(application));
             model.setDescription(application.getDescription());
             model.setCustomer(customerConverter.toModel().apply(application.getCustomer()));
-            model.setStartUrl("java://localhost:8080/apps/" + application.getKey());
+            model.setStartUrl("java://" + getHostName() + ":8080/apps/" + application.getKey());
             return model;
         };
+    }
+
+    private String getHostName() {
+        String hostName;
+        try {
+            hostName = InetAddress.getLocalHost().getHostName();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+        return hostName;
     }
 
     private static List<String> buildScreenshotsUrl(DukeApplication application) {

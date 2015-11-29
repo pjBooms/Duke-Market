@@ -1,28 +1,19 @@
 package dukemarket;
 
-import dukemarket.http.ErrorMapper;
 import dukemarket.models.ApplicationModel;
 import dukemarket.models.CustomerModel;
-import org.restler.Restler;
-import org.restler.Service;
-import org.restler.spring.mvc.SpringMvcSupport;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 /**
  */
 public class RestProvider {
 
-    private static Service service;
     private static BackendClient client;
 
     static {
-        Restler restler = new Restler("http://localhost:8088", new SpringMvcSupport());
-        restler.addEnhancer(new ErrorMapper());
-        service = restler.build();
         client = new BackendClient("http://localhost:8088");
     }
 

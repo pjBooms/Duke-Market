@@ -21,7 +21,7 @@ public class StdUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Customer customer = customerRepository.findByEmail(s);
-        Stream<SimpleGrantedAuthority> roles = customer.getRoles().stream().map(r -> new SimpleGrantedAuthority(r.name()));
+        Stream<SimpleGrantedAuthority> roles = customer.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.name()));
         return new CustomersDetails(customer.getEmail(), customer.getPassword(), roles.collect(Collectors.toSet()), customer.getKey());
     }
 }
