@@ -13,3 +13,4 @@ spring.h2.console.enabled: true
 multipart.maxFileSize: 100MB
 multipart.maxRequestSize: 100MB
 bundles.dir: /tmp/dukemarket/bundles
+server.port: 8088

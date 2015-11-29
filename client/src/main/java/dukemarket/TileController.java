@@ -5,8 +5,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import webfx.WebFXController;
 
-public class TileController {
+public class TileController extends WebFXController {
 
     @FXML
     ImageView image;
@@ -17,9 +18,17 @@ public class TileController {
     @FXML
     Button startButton;
 
+    public void showApp() {
+        navigationContext.goToWithContext("appdescription.fxml", context);
+    };
+
     public void fillTile(Image appIcon, String appDesc) {
         image.setImage(appIcon);
         appLink.setText(appDesc);
     }
 
+    @Override
+    public void onShow() {
+
+    }
 }

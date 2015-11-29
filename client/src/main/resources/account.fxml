@@ -13,7 +13,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dukemarket.MainController">
+<ScrollPane hbarPolicy="NEVER" prefHeight="600.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dukemarket.AccountController">
     <content>
       <HBox>
          <children>
@@ -63,18 +63,13 @@
                      <children>
                         <VBox>
                            <children>
-                              <Hyperlink fx:id="register" text="Register" />
-                              <Hyperlink fx:id="account" layoutX="21.0" layoutY="36.0" onAction="#account" text="My Account">
+                              <Hyperlink fx:id="info" text="My Info" onAction="#info" />
+                              <Hyperlink fx:id="apps" layoutX="21.0" layoutY="36.0" onAction="#getApps" text="My apps">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Hyperlink>
-                              <Hyperlink fx:id="login" text="Login" />
-                              <Hyperlink fx:id="logout" layoutX="21.0" layoutY="83.0" text="Logout">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Hyperlink>
+                              <Hyperlink fx:id="upload" onAction="#upload" text="Upload" />
                            </children>
                         </VBox>
                             <TilePane fx:id="tiles" prefHeight="548.0" prefWidth="862.0">
