@@ -1,5 +1,6 @@
 package dukemarket.controllers;
 
+import dukemarket.SecurityUtils;
 import dukemarket.converters.ApplicationConverter;
 import dukemarket.domain.Customer;
 import dukemarket.domain.DukeApplication;
@@ -111,11 +112,13 @@ public class ApplicationsController implements Applications {
 
     @Override
     public ApplicationModel get(String id) {
-        return null;
+        return ApplicationConverter.toModel().apply(applicationRepository.findByKey(id));
     }
 
     @Override
     public List<ApplicationModel> listMy() {
-        return null;
+        String currentUser = SecurityUtils.currentUser();
+        return applicationRepository.findByCustomer(currentUser).stream().map(ApplicationConverter.toModel()).collect(Collectors.toList());
+
     }
 }
