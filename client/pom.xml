@@ -57,11 +57,11 @@
             <artifactId>dukemarket-api</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.restler</groupId>
-            <artifactId>restler-spring-mvc</artifactId>
-            <version>0.4.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.restler</groupId>-->
+            <!--<artifactId>restler-spring-mvc</artifactId>-->
+            <!--<version>0.4.1</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>webfx</groupId>
             <artifactId>webfx-component</artifactId>

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class BackendClient {
 
-    private String host = "http://localhost:8080";
+    private String host;
 
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -28,6 +28,10 @@ public class BackendClient {
 
     public void login(String username, String password) {
         authenticatedRestTemplate = new BasicAuthRestTemplate(username, password);
+    }
+
+    public void logout() {
+        authenticatedRestTemplate = null;
     }
 
     public List<ApplicationModel> listApplications() {
@@ -47,14 +51,6 @@ public class BackendClient {
                 });
         return entity.getBody();
     }
-
-//    public ApplicationModel getApplication(String user, String app) {
-//        ResponseEntity<List<ApplicationModel>> entity = restTemplate.exchange(buildUrl("/apps/my"), HttpMethod.GET, null,
-//                new ParameterizedTypeReference<List<ApplicationModel>>() {
-//                });
-//        return entity.getBody();
-//    }
-
 
     private String buildUrl(String context) {
         return host + context;
