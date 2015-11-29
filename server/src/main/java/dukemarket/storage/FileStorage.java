@@ -49,6 +49,7 @@ public class FileStorage {
     }
 
     public File getBundleFile(String userId, String appName) {
-        return new File(root, userId + File.separator + appName);
+//        return new File(root, userId + File.separator + appName);
+        return new File(root, appName);
     }
 }
