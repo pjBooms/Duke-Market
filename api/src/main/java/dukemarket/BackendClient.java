@@ -58,7 +58,7 @@ public class BackendClient {
 
         HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<LinkedMultiValueMap<String, Object>>(
                 map, headers);
-        ResponseEntity<String> result = authenticatedRestTemplate.exchange(
+        ResponseEntity<String> result = getAuthenticatedTemplated().exchange(
                 buildUrl("/bundle"), HttpMethod.POST, requestEntity,
                 String.class);
     }

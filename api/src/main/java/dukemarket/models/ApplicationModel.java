@@ -18,6 +18,8 @@ public class ApplicationModel {
 
     private String iconUrl;
 
+    private String startUrl;
+
     private List<String> screenshotsUrls = new ArrayList<>();
 
     private Date dateCreated;
@@ -88,5 +90,13 @@ public class ApplicationModel {
 
     public void setCustomer(CustomerModel customer) {
         this.customer = customer;
+    }
+
+    public String getStartUrl() {
+        return startUrl;
+    }
+
+    public void setStartUrl(String startUrl) {
+        this.startUrl = startUrl;
     }
 }
