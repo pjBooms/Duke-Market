@@ -20,6 +20,9 @@ public class UsersController implements Users {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private CustomerConverter converter;
+
     @Override
     public CustomerModel register(@RequestBody CustomerModel customerModel) {
         Customer customer = new Customer();
@@ -48,7 +51,7 @@ public class UsersController implements Users {
             customer.setLastName(customerModel.getLastName());
             customer.setPhone(customerModel.getPhone());
             customerRepository.save(customer);
-            return CustomerConverter.toModel().apply(customer);
+            return converter.toModel().apply(customer);
         } else {
             throw new RuntimeException("User found!!");
         }
@@ -57,6 +60,6 @@ public class UsersController implements Users {
     @Override
     public CustomerModel current() {
         String currentUser = SecurityUtils.currentUser();
-        return CustomerConverter.toModel().apply(customerRepository.findByKey(currentUser).get());
+        return converter.toModel().apply(customerRepository.findByKey(currentUser).get());
     }
 }

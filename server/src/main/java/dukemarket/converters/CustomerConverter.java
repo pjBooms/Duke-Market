@@ -2,14 +2,16 @@ package dukemarket.converters;
 
 import dukemarket.domain.Customer;
 import dukemarket.models.CustomerModel;
+import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
 /**
  * This file created by Maxim S. Ivanov
  */
+@Component
 public class CustomerConverter {
-    public static Function<? super Customer, CustomerModel> toModel() {
+    public Function<? super Customer, CustomerModel> toModel() {
         return customer -> {
             CustomerModel model = new CustomerModel();
             model.setKey(customer.getKey());

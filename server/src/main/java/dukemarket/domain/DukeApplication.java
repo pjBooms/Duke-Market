@@ -34,9 +34,6 @@ public class DukeApplication {
     @Column(name = "version")
     private String version;
 
-    @Column(name = "root")
-    private String root;
-
     @OneToOne
     private Customer customer;
 
@@ -94,10 +91,6 @@ public class DukeApplication {
 
     public void setVersion(String version) {
         this.version = version;
-    }
-
-    public String getRoot() {
-        return root;
     }
 
     public Customer getCustomer() {

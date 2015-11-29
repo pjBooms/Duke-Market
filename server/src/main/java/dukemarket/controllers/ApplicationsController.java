@@ -26,6 +26,9 @@ import java.util.stream.Collectors;
 public class ApplicationsController implements Applications {
 
     @Autowired
+    private ApplicationConverter converter;
+
+    @Autowired
     private ApplicationRepository applicationRepository;
 
     @Autowired
@@ -39,12 +42,12 @@ public class ApplicationsController implements Applications {
     @Override
     public List<ApplicationModel> list() {
 
-        for (int i = 0; i < 5; i++) {
-            applicationRepository.save(buildFakeApp(i));
-        }
-
+//        for (int i = 0; i < 5; i++) {
+//            applicationRepository.save(buildFakeApp(i));
+//        }
+//
         List<DukeApplication> applications = applicationRepository.findAll();
-        return applications.stream().map(ApplicationConverter.toModel()).collect(Collectors.toList());
+        return applications.stream().map(converter.toModel()).collect(Collectors.toList());
     }
 
     private ApplicationModel buildFakeAppModel(int i) {
@@ -101,13 +104,13 @@ public class ApplicationsController implements Applications {
 
     @Override
     public ApplicationModel get(String user, String id) {
-        return ApplicationConverter.toModel().apply(applicationRepository.findByKey(id));
+        return converter.toModel().apply(applicationRepository.findByKey(id));
     }
 
     @Override
     public List<ApplicationModel> listMy() {
         String currentUser = SecurityUtils.currentUser();
-        return applicationRepository.findByCustomer(currentUser).stream().map(ApplicationConverter.toModel()).collect(Collectors.toList());
+        return applicationRepository.findByCustomer(currentUser).stream().map(converter.toModel()).collect(Collectors.toList());
 
     }
 }

@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Test2 {
     public static void main(String[] args) throws MalformedURLException {
-        BackendClient client = new BackendClient("http://localhost:8080");
+        BackendClient client = new BackendClient("http://localhost:8088");
 
         List<ApplicationModel> applications = client.listApplications();
 
@@ -26,6 +26,8 @@ public class Test2 {
         client.login(customerModel.getEmail(), customerModel.getPassword());
 
         customerModel = client.getCurrentUser();
+
+        List<ApplicationModel> myapplications = client.listMyApplications();
 
         client.update(customerModel.getKey(), customerModel);
 

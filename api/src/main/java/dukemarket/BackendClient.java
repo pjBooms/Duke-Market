@@ -42,7 +42,7 @@ public class BackendClient {
     }
 
     public List<ApplicationModel> listMyApplications() {
-        ResponseEntity<List<ApplicationModel>> entity = restTemplate.exchange(buildUrl("/apps/my"), HttpMethod.GET, null,
+        ResponseEntity<List<ApplicationModel>> entity = authenticatedRestTemplate.exchange(buildUrl("/apps/my"), HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<ApplicationModel>>() {
                 });
         return entity.getBody();
