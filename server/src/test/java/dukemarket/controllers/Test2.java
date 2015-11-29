@@ -25,6 +25,8 @@ public class Test2 {
 
         client.login(customerModel.getEmail(), customerModel.getPassword());
 
+        customerModel = client.getCurrentUser();
+
         client.update(customerModel.getKey(), customerModel);
 
         client.upload("/Users/ivanenok/prj/github/Java-ReStart/apps/brickbreaker.zip");

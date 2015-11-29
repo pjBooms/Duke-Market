@@ -13,4 +13,9 @@ public interface Users {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     CustomerModel update(@PathVariable("id") String id, @RequestBody CustomerModel customer);
 
+    @RequestMapping(value = "/current", method = RequestMethod.GET)
+    CustomerModel current();
+
+
+
 }

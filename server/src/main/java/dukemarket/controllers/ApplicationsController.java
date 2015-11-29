@@ -31,17 +31,9 @@ public class ApplicationsController implements Applications {
     @Autowired
     private CustomerRepository customerRepository;
 
-//    @Override
-//    public ApplicationModel register(ApplicationModel applicationModel) {
-//        DukeApplication application = new DukeApplication();
-//        application.setDateCreated(new Date());
-//        application.setDateCreated(new Date());
-//        return null;
-//    }
-
     @Override
     public void update(@PathVariable String id, @RequestBody ApplicationModel application) {
-
+        // do nothing
     }
 
     @Override
@@ -53,9 +45,6 @@ public class ApplicationsController implements Applications {
 
         List<DukeApplication> applications = applicationRepository.findAll();
         return applications.stream().map(ApplicationConverter.toModel()).collect(Collectors.toList());
-//        ArrayList<ApplicationModel> result = new ArrayList<>();
-//
-//        return result;
     }
 
     private ApplicationModel buildFakeAppModel(int i) {
@@ -111,7 +100,7 @@ public class ApplicationsController implements Applications {
     }
 
     @Override
-    public ApplicationModel get(String id) {
+    public ApplicationModel get(String user, String id) {
         return ApplicationConverter.toModel().apply(applicationRepository.findByKey(id));
     }
 

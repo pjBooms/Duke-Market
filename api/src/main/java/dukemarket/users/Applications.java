@@ -21,8 +21,8 @@ public interface Applications {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     List<ApplicationModel> list();
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    ApplicationModel get(@PathVariable String id);
+    @RequestMapping(value = "/{user}/{id}", method = RequestMethod.GET)
+    ApplicationModel get(@PathVariable String user, @PathVariable String id);
 
     @RequestMapping(value = "/my", method = RequestMethod.GET)
     List<ApplicationModel> listMy();

@@ -37,6 +37,25 @@ public class BackendClient {
         return entity.getBody();
     }
 
+    public CustomerModel getCurrentUser() {
+        return authenticatedRestTemplate.getForObject(buildUrl("/users/current"), CustomerModel.class);
+    }
+
+    public List<ApplicationModel> listMyApplications() {
+        ResponseEntity<List<ApplicationModel>> entity = restTemplate.exchange(buildUrl("/apps/my"), HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<ApplicationModel>>() {
+                });
+        return entity.getBody();
+    }
+
+//    public ApplicationModel getApplication(String user, String app) {
+//        ResponseEntity<List<ApplicationModel>> entity = restTemplate.exchange(buildUrl("/apps/my"), HttpMethod.GET, null,
+//                new ParameterizedTypeReference<List<ApplicationModel>>() {
+//                });
+//        return entity.getBody();
+//    }
+
+
     private String buildUrl(String context) {
         return host + context;
     }

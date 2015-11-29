@@ -53,4 +53,10 @@ public class UsersController implements Users {
             throw new RuntimeException("User found!!");
         }
     }
+
+    @Override
+    public CustomerModel current() {
+        String currentUser = SecurityUtils.currentUser();
+        return CustomerConverter.toModel().apply(customerRepository.findByKey(currentUser).get());
+    }
 }

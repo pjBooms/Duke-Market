@@ -2,14 +2,12 @@ package dukemarket;
 
 import dukemarket.models.ApplicationModel;
 import dukemarket.users.Applications;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.layout.TilePane;
-import org.springframework.web.multipart.commons.CommonsFileUploadSupport;
 import webfx.WebFXController;
 
 import java.io.IOException;
@@ -42,7 +40,7 @@ public class AccountController extends WebFXController {
 
         List<ApplicationModel> apps = appsRest.list();
 
-        for (ApplicationModel app: apps) {
+        for (ApplicationModel app : apps) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/tile.fxml"));
             Node tile = fxmlLoader.load();
             TileController controller = fxmlLoader.getController();
