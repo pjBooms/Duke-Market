@@ -23,7 +23,7 @@ public class ApplicationConverter {
             model.setScreenshotsUrls(buildScreenshotsUrl(application));
             model.setDescription(application.getDescription());
             model.setCustomer(CustomerConverter.toModel().apply(application.getCustomer()));
-            model.setStartUrl("http://localhost:8080/apps/" + application.getKey());
+            model.setStartUrl("java://localhost:8080/apps/" + application.getKey());
             return model;
         };
     }
