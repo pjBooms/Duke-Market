@@ -1,6 +1,7 @@
 package dukemarket;
 
 import dukemarket.models.ApplicationModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -8,6 +9,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import webfx.WebFXController;
+
+import java.io.IOException;
+import java.net.URL;
 
 /**
  */
@@ -32,10 +36,19 @@ public class AppDescController extends WebFXController {
         ApplicationModel app = (ApplicationModel) context;
         appName.setText(app.getName());
         description.setText(app.getDescription());
-        icon.setImage(ICON_48);
-        System.out.println(ICON_48.getHeight());
-        for (int i = 0; i < 3; i++) {
-            screenshots.getChildren().add(new ImageView(ICON_48));
+        try {
+            Image iconIm = new Image(new URL(app.getIconUrl()).openStream());
+            icon.setImage(iconIm);
+            for (String screenshot : app.getScreenshotsUrls()) {
+                screenshots.getChildren().add(new ImageView(new Image(new URL(screenshot).openStream())));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    public void start() {
+        ApplicationModel app = (ApplicationModel) context;
+        navigationContext.goTo(app.getStartUrl());
     }
 }

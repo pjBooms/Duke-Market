@@ -13,9 +13,14 @@
             <Font size="24.0" />
          </font></Label>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true" />
-      <TextArea fx:id="description" layoutX="246.0" layoutY="50.0" prefHeight="200.0" prefWidth="486.0" />
+      <TextArea fx:id="description" layoutX="246.0" layoutY="50.0" prefHeight="200.0" prefWidth="369.0" />
       <ImageView fx:id="icon" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true" />
       <HBox fx:id="screenshots" layoutY="267.0" prefHeight="169.0" prefWidth="748.0" />
+      <Button fx:id="start" layoutX="646.0" layoutY="75.0" mnemonicParsing="false" onAction="#start" prefHeight="76.0" prefWidth="105.0" text="Start">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

@@ -19,6 +19,6 @@ public class UploadController extends WebFXController {
     }
 
     public void upload() {
-        System.out.println(new FileChooser().showOpenDialog(upload.getScene().getWindow()));
+        RestProvider.uploadBundle(new FileChooser().showOpenDialog(upload.getScene().getWindow()));
     }
 }
