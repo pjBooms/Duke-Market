@@ -12,5 +12,5 @@ spring.h2.console.enabled: true
 # implement chunked file upload
 multipart.maxFileSize: 100MB
 multipart.maxRequestSize: 100MB
-bundles.dir: /tmp/dukemarket/bundles
+bundles.dir: /Users/lipskynikita/Java-ReStart/apps
 server.port: 8088

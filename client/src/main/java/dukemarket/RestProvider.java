@@ -43,4 +43,15 @@ public class RestProvider {
     }
 
 
+    public static CustomerModel getCurrentUser() {
+        return client.getCurrentUser();
+    }
+
+    public static List<ApplicationModel> getMyApplicationsRest() {
+        return client.listMyApplications();
+    }
+
+    public static void logout() {
+        client.logout();
+    }
 }

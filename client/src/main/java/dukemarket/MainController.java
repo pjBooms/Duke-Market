@@ -80,10 +80,18 @@ public class MainController extends WebFXController {
     }
 
     public void account() {
-        navigationContext.goTo("account.fxml");
+        navigationContext.goToWithContext("account.fxml", context);
     }
 
     public void register() {
         navigationContext.goTo("register.fxml");
+    }
+
+    public void login() {
+        navigationContext.goTo("login.fxml");
+    }
+
+    public void logout() {
+        navigationContext.goTo("logout.fxml");
     }
 }

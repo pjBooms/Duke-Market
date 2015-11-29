@@ -39,7 +39,7 @@ public class AccountController extends WebFXController {
 
         //Applications appsRest = RestProvider.getApplicationsRest();
 
-        List<ApplicationModel> apps = RestProvider.getApplicationsRest();
+        List<ApplicationModel> apps = RestProvider.getMyApplicationsRest();
 //                appsRest.list();
 
         for (ApplicationModel app : apps) {
@@ -93,5 +93,20 @@ public class AccountController extends WebFXController {
     }
 
     public void info() {
+        Thread.currentThread().setContextClassLoader(getClass().getClassLoader());
+        tiles.getChildren().clear();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/myinfo.fxml"));
+        Node node = null;
+        try {
+            node = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        InfoController controller = fxmlLoader.getController();
+        controller.setContexts(context, navigationContext);
+        controller.onShow();
+        tiles.getChildren().add(node);
+
     }
 }
