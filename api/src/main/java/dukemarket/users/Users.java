@@ -11,6 +11,6 @@ public interface Users {
     CustomerModel register(@RequestBody CustomerModel customer);
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    void update(@PathVariable String id, @RequestBody CustomerModel customer);
+    CustomerModel update(@PathVariable("id") String id, @RequestBody CustomerModel customer);
 
 }

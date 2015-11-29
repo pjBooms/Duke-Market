@@ -1,6 +1,8 @@
 package dukemarket;
 
+import dukemarket.auth.CustomersDetails;
 import org.apache.commons.codec.binary.Hex;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 
 import java.nio.charset.Charset;
@@ -10,6 +12,11 @@ import java.security.MessageDigest;
  * This file created by Maxim S. Ivanov
  */
 public class SecurityUtils {
+    public static String currentUser(){
+        CustomersDetails customersDetails = (CustomersDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return customersDetails.getKey();
+    }
+
     public static String hash(String password){
         if (!StringUtils.isEmpty(password)) {
             try {

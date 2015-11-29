@@ -3,8 +3,6 @@ package dukemarket.controllers;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Test;
 
@@ -26,7 +24,7 @@ public class UploadControllerTest {
         HttpPost post = new HttpPost(String.valueOf(new URL("http://localhost:8080/bundle")));
 
         MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-        builder.addBinaryBody("bundle", new File("/home/azhidkov/yd/Activities/HackDay40/Java-ReStart/apps/BrickBreaker.zip"));
+        builder.addBinaryBody("bundle", new File("/Users/ivanenok/prj/github/Java-ReStart/apps/brickbreaker.zip"));
         post.setEntity(builder.build());
         client.execute(post);
 

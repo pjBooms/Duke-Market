@@ -1,6 +1,7 @@
 package dukemarket.controllers;
 
 import dukemarket.SecurityUtils;
+import dukemarket.converters.CustomerConverter;
 import dukemarket.domain.Customer;
 import dukemarket.models.CustomerModel;
 import dukemarket.repositories.CustomerRepository;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
+import java.util.Optional;
 
 @Controller
 public class UsersController implements Users {
@@ -36,7 +38,19 @@ public class UsersController implements Users {
     }
 
     @Override
-    public void update(@PathVariable String id, @RequestBody CustomerModel customer) {
+    public CustomerModel update(@PathVariable String id, @RequestBody CustomerModel customerModel) {
+        String currentUser = SecurityUtils.currentUser();
 
+        Optional<Customer> customerOpt = customerRepository.findByKey(id);
+        if (customerOpt.isPresent()){
+            Customer customer = customerOpt.get();
+            customer.setFirstName(customerModel.getFirstName());
+            customer.setLastName(customerModel.getLastName());
+            customer.setPhone(customerModel.getPhone());
+            customerRepository.save(customer);
+            return CustomerConverter.toModel().apply(customer);
+        } else {
+            throw new RuntimeException("User found!!");
+        }
     }
 }

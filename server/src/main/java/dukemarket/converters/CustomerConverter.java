@@ -22,4 +22,18 @@ public class CustomerConverter {
             return model;
         };
     }
+
+//    public static Function<? super CustomerModel, Customer> deModel() {
+//        return customerModel -> {
+//            CustomerModel model = new CustomerModel();
+//            model.setKey(customer.getKey());
+//            model.setDateCreated(customer.getDateCreated());
+//            model.setFirstName(customer.getFirstName());
+//            model.setLastName(customer.getLastName());
+//            model.setEmail(customer.getEmail());
+//            model.setPhone(customer.getPhone());
+//            model.setKey(customer.getKey());
+//            return model;
+//        }
+//    }
 }

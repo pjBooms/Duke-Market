@@ -1,15 +1,18 @@
 package dukemarket.controllers;
 
-import dukemarket.models.ApplicationModel;
 import dukemarket.models.CustomerModel;
 import dukemarket.users.Applications;
 import dukemarket.users.Users;
 import org.restler.Restler;
+import org.restler.http.security.authorization.FormAuthorizationStrategy;
+import org.restler.spring.mvc.SpringMvcRequestExecutor;
 import org.restler.spring.mvc.SpringMvcSupport;
+import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This file created by Maxim S. Ivanov
@@ -19,10 +22,8 @@ public class Test {
         String baseHost = "http://localhost:8080";
         Restler restler = new Restler(baseHost, new SpringMvcSupport());
 
-        String login;
-        String password;
-
-//        restler.authorizationStrategy(new FormAuthorizationStrategy(new SpringMvcRequestExecutor(new RestTemplate()), URI.create(baseHost + "/login"), login, password));
+        String login = "12345";
+        String password = "password";
 
 //        restler.addEnhancer(new ErrorMapper());
         org.restler.Service service = restler.build();
@@ -33,7 +34,22 @@ public class Test {
 
         CustomerModel model = users.register(buildFakeCustomer());
 
-        List<ApplicationModel> models = applications.list();
+        model.setFirstName(model.getFirstName() + " !!!!");
+
+        restler.authorizationStrategy(new FormAuthorizationStrategy(
+                new SpringMvcRequestExecutor(new RestTemplate()),
+                URI.create(baseHost + "/login"),
+                model.getEmail(),
+                "username",
+                model.getPassword(),
+                "password"));
+        restler.cookieBasedAuthentication();
+
+        org.restler.Service authenticatedService = restler.build();
+
+        authenticatedService.produceClient(Users.class).update(model.getKey(), buildFakeCustomer());
+
+//        List<ApplicationModel> models = applications.list();
 
     }
 
@@ -41,7 +57,7 @@ public class Test {
         CustomerModel customerModel = new CustomerModel();
         customerModel.setKey(UUID.randomUUID().toString());
         customerModel.setDateCreated(new Date());
-        customerModel.setEmail("test@customer.com");
+        customerModel.setEmail(ThreadLocalRandom.current().nextDouble() + "test@customer.com");
         customerModel.setFirstName("First Name");
         customerModel.setLastName("Last Name");
         customerModel.setPhone("+1 111 111 11 11");

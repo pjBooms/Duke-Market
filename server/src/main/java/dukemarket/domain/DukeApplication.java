@@ -22,6 +22,7 @@ public class DukeApplication {
     private String name;
 
     @Column(name = "description")
+    @Lob
     private String description;
 
     @ElementCollection(fetch = FetchType.EAGER)
