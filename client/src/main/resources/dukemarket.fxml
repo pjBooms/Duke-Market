@@ -69,8 +69,8 @@
                                     <Font size="14.0" />
                                  </font>
                               </Hyperlink>
-                              <Hyperlink fx:id="login" text="Login" />
-                              <Hyperlink fx:id="logout" layoutX="21.0" layoutY="83.0" text="Logout">
+                              <Hyperlink fx:id="login" text="Login" onAction="#login" />
+                              <Hyperlink fx:id="logout" layoutX="21.0" layoutY="83.0" text="Logout" onAction="#logout">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

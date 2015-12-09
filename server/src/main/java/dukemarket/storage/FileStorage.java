@@ -35,6 +35,7 @@ public class FileStorage {
                 }
             } else {
                 byte[] buffer = new byte[1024];
+                f.getParentFile().mkdirs();
                 FileOutputStream fOutput = new FileOutputStream(f);
                 int count = 0;
                 while ((count = zis.read(buffer)) > 0) {
