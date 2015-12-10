@@ -1,4 +1,4 @@
-spring.jpa.hibernate.ddl-auto: create-drop
+spring.jpa.hibernate.ddl-auto: update
 spring.jpa.hibernate.naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
 spring.jpa.database: H2
 spring.jpa.show-sql: true
@@ -8,11 +8,6 @@ spring.datasource.url: jdbc:h2:tcp://localhost/~/dukemarket
 
 #jdbc:h2:tcp://localhost/~/dukemarket
 
-#datasource.mine.jdbcUrl: jdbc:h2:mem:mydb
-#datasource.mine.user: sa
-#datasource.mine.poolSize: 30
-
-#logging.level.org.springframework: DEBUG
 # implement chunked file upload
 multipart.maxFileSize: 100MB
 multipart.maxRequestSize: 100MB
